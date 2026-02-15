@@ -1,6 +1,6 @@
 baseURL: 'https://embeddedaustria.com/'
 title: Embedded Austria
-languageCode: de-de
+languageCode: en-US
 theme: tailbliss
 DefaultContentLanguage: en
 enableEmoji: true
@@ -12,6 +12,7 @@ pagination:
 darkmode_js:
   - assets/js/darkmode.js
 enableInlineShortcodes: true
+buildFuture: true
 
 markup:
   goldmark:
@@ -50,30 +51,22 @@ markup:
 params:
   author: Bernhard Trinnes
   authorimage: ../assets/images/global/author.webp
-  og_image: /images/pages/IMG_0047-2-scaled.webp
+  og_image: /images/hero.webp
   hero:
-    image: "images/pages/hero.webp"
+    image: "images/hero.webp"
     alt: "Embedded Austria"
-  moto: "Embedded Austria"
-  description: "Meet Embedded Software Experts."
+  moto: "Meet Embedded Software Experts"
+  description: "Learn about the future of embedded software!"
   disable_theme_toggle: true
   disable_stay_uptodate: true
+  ticketURL: "https://www.eventbrite.at/o/embedded-austria-58693427003"
 
   p1:
-    heading: "Our mission"
-    image: "images/pages/IMG_0047-2-scaled.webp"
+    heading: "Building a Community"
+    subheading: "Learn from each other"
     content:
-      - text: "Sagittis scelerisque nulla cursus in enim consectetur quam. Dictum urna sed consectetur neque tristique pellentesque. Blandit amet, sed aenean erat arcu morbi. Cursus faucibus nunc nisl netus morbi vel porttitor vitae ut. Amet vitae fames senectus vitae."
-
-  p2:
-    heading: "Upcoming Events"
-    image: "images/IMG_0047-2-scaled.jpg"
-    content:
-      - text: ""
-  p4:
-    heading: "From the blog"
-    content:
-      - text: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa libero labore natus atque, ducimus sed."
+    - text: "Embedded Austria brings these people together. We host regular meetups in Vienna where engineers, researchers, and enthusiasts share real-world experience, discuss emerging technologies, and connect across companies."
+    - text: "No vendor pitches, no marketing fluff just practitioners talking to practitioners about the things that matter."
   p5:
     heading: "Stay Up to Date"
     content:
@@ -90,69 +83,35 @@ params:
     linkedin:
       enabled: true
       url: 'https://www.linkedin.com/company/embeddedaustria/'
-    facebook:
-      enabled: false
-      url: 'https://facebook.com/'
-    instagram:
-      enabled: false
-      url: 'https://instagram.com/'
-    twitter:
-      enabled: false
-      url: 'https://twitter.com/'
-
-    
 
 menu:
   main:
     - identifier: tickets
       name: Tickets
-      url: /tickets/
+      url: "https://www.eventbrite.at/o/embedded-austria-58693427003"
       weight: 20
   categories:
     - identifier: about
       name: About
       url: /about/
       weight: 20
-  dropdown:
-    - identifier: appearance
-      pre: stars # can be stars, comments or piechart
-      name: Appearance
-      post: "Easy customization"
-      url: "#"
-      weight: 10
-    - identifier: comments
-      pre: comments # can be stars, comments or piechart
-      name: Comments
-      post: "Check your latest comments"
-      url: "#"
-      weight: 20
-    - identifier: analytics
-      pre: piechart # can be stars, comments or piechart
-      name: Analytics
-      post: "Take a look at your statistics"
-      url: "#"
-      weight: 30
   footer:
     - identifier: imprint
       name: Imprint
       url: /about/
       weight: 10
-    - identifier: blog
-      name: Blog
-      url: /categories/blog/
-      weight: 20
     - identifier: events
       name: Events
-      url: /categories/events/
+      url: /events/
       weight: 30
-    - identifier: contact
-      name: Contact
-      url: /contact/
+    - identifier: tickets
+      name: Tickets
+      url: "https://www.eventbrite.at/o/embedded-austria-58693427003"
       weight: 50
 
 taxonomies:
   category: Categories
-  tag: Tags
+  tag: tags
 
 privacy:
   disqus:

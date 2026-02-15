@@ -5,9 +5,9 @@
 <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
 <link rel="shortcut icon" href="/favicon/favicon.ico" />
 <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
-<meta name="apple-mobile-web-app-title" content="MyWebSite" />
+<meta name="apple-mobile-web-app-title" content="Embedded Austria" />
 <link rel="manifest" href="/favicon/site.webmanifest" />
-<meta name="theme-color" content="#ffffff">
+<meta name="theme-color" content="#000000">
 {{ partial "meta" . }}
 
 {{/* DNS prefetch and preconnect for external resources */}}
@@ -20,12 +20,12 @@
 
 {{/* Preload critical hero image for better LCP performance */}}
 {{ if .IsHome }}
-{{ $heroImage := resources.Get "images/pages/tailbliss-rocket-indigo.png" }}
+{{ $heroImage := resources.Get "images/pages/hero.png" }}
 {{ if $heroImage }}
 {{ $heroWebP := $heroImage.Resize "576x576 webp q85" }}
 <link href="{{ $heroWebP.RelPermalink }}" rel="preload" as="image" fetchpriority="high" loading="eager">
 {{ else }}
-<link as="image" href="/images/tailbliss-rocket-indigo.webp" rel="preload" fetchpriority="high" loading="eager">
+<link as="image" href="/images/hero.webp" rel="preload" fetchpriority="high" loading="eager">
 {{ end }}
 {{ end }}
 

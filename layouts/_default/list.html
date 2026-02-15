@@ -1,0 +1,22 @@
+{{ define "main" }}
+<main>
+    <article>
+        <header class="mb-4 bg-primary-400">
+            <span class="py-96">
+                <h1 class="py-16 text-5xl font-black text-center text-white capitalize">
+                    {{ .Title }}
+                </h1>
+            </span>
+        </header>
+        {{ with .Content }}
+        <div class="px-6 mx-auto mt-6 max-w-3xl prose dark:text-white">
+            {{- . -}}
+        </div>
+        {{ end }}
+        {{ partial "posts-template.html" . }}
+    </article>
+    <div class="mx-auto my-16 max-w-4xl">
+        {{ partial "pagination" . }}
+    </div>
+</main>
+{{ end }}
