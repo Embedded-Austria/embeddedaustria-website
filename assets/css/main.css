@@ -1,0 +1,495 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/poppins-v24-latin-300.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/poppins-v24-latin-600.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/poppins-v24-latin-700.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@utility prose-2xl {
+  max-width: 80ch !important;
+  font-size: 110%;
+}
+
+/* Prevent layout shifts during image loading */
+img {
+  /* Ensure images maintain their aspect ratio during loading */
+  height: auto;
+  max-width: 100%;
+  /* Prevent layout shifts by ensuring dimensions are respected */
+  display: block;
+}
+
+/* Optimize image loading performance */
+img[loading="lazy"] {
+  /* Use content-visibility for better performance where supported */
+  content-visibility: auto;
+  /* Fallback for browsers that don't support content-visibility */
+  contain: layout style paint;
+}
+
+/* Hero container and image optimizations */
+.hero-container {
+  /* Reserve space immediately to prevent layout shifts */
+  width: 100%;
+  max-width: 576px;
+  /* Fixed aspect ratio to prevent any shifts */
+  aspect-ratio: 1 / 1;
+  /* Ensure proper containment */
+  contain: layout style;
+  /* Prevent any overflow issues */
+  overflow: hidden;
+}
+
+.hero-image {
+  /* Responsive width that respects container constraints */
+  width: 100%;
+  height: auto;
+  max-width: 576px;
+  /* Fixed aspect ratio */
+  aspect-ratio: 1 / 1;
+  /* Prevent any layout shifts during loading */
+  contain: layout style paint;
+  /* Ensure image fits within container */
+  object-fit: cover;
+  /* Prevent any size changes */
+  flex-shrink: 0;
+}
+
+/* Specific aspect ratio containers for common image sizes */
+.aspect-square {
+  aspect-ratio: 1 / 1;
+}
+
+.aspect-video {
+  aspect-ratio: 16 / 9;
+}
+
+@theme {
+  /* Content paths for Hugo */
+  --content: "layouts/**/*.html", "content/**/*.md", "assets/**/*.js";
+  
+  /* Efficient safelist using Tailwind patterns for development */
+  --safelist: 
+    /* Layout & Spacing patterns */
+    "container", "mx-auto",
+    "p-*", "px-*", "py-*", "pt-*", "pb-*", "pl-*", "pr-*",
+    "m-*", "mx-*", "my-*", "mt-*", "mb-*", "ml-*", "mr-*",
+    "space-x-*", "space-y-*",
+    
+    /* Flexbox & Grid patterns */
+    "flex", "flex-*", "items-*", "justify-*", "content-*",
+    "grid", "grid-cols-*", "col-span-*", "row-span-*",
+    "gap-*", "gap-x-*", "gap-y-*",
+    
+    /* Sizing patterns */
+    "w-*", "h-*", "max-w-*", "max-h-*", "min-w-*", "min-h-*",
+    
+    /* Color patterns */
+    "bg-*", "text-*", "border-*", "ring-*", "divide-*",
+    
+    /* Typography patterns */
+    "text-*", "font-*", "leading-*", "tracking-*",
+    
+    /* Border & Radius patterns */
+    "border", "border-*", "rounded", "rounded-*",
+    
+    /* Shadow patterns */
+    "shadow", "shadow-*",
+    
+    /* Display & Layout */
+    "block", "inline-block", "inline", "flex", "inline-flex", "grid", "inline-grid", "hidden",
+    "overflow-*", "object-*",
+    
+    /* Position patterns */
+    "static", "fixed", "absolute", "relative", "sticky",
+    "inset-*", "top-*", "right-*", "bottom-*", "left-*",
+    "z-*",
+    
+    /* Responsive patterns */
+    "sm:*", "md:*", "lg:*", "xl:*", "2xl:*",
+    
+    /* State patterns */
+    "hover:*", "focus:*", "active:*", "disabled:*", "visited:*",
+    "dark:*", "group-hover:*", "group-focus:*",
+    
+    /* Form & Interaction patterns */
+    "placeholder:*", "focus-within:*", "focus-visible:*",
+    
+    /* Animation & Transition patterns */
+    "transition", "transition-*", "duration-*", "delay-*", "ease-*",
+    "animate-*", "transform", "transform-*",
+    
+    /* Custom classes */
+    "prose-2xl";
+  
+  /* Primary Colors - Teal #03989E */
+  --color-primary: oklch(58.5% .12 192);
+  --color-primary-50: oklch(96% .02 192);
+  --color-primary-100: oklch(92% .04 192);
+  --color-primary-200: oklch(85% .07 192);
+  --color-primary-300: oklch(76% .1 192);
+  --color-primary-400: oklch(66% .12 192);
+  --color-primary-500: oklch(58.5% .12 192);
+  --color-primary-600: oklch(51% .11 192);
+  --color-primary-700: oklch(44% .1 192);
+  --color-primary-800: oklch(37% .08 192);
+  --color-primary-900: oklch(31% .06 192);
+  --color-primary-950: oklch(22% .04 192);
+
+  /* Secondary Colors - Pink #FF66C4 */
+  --color-secondary: oklch(68% .22 340);
+  --color-secondary-50: oklch(97% .02 340);
+  --color-secondary-100: oklch(94% .04 340);
+  --color-secondary-200: oklch(89% .08 340);
+  --color-secondary-300: oklch(82% .14 340);
+  --color-secondary-400: oklch(74% .19 340);
+  --color-secondary-500: oklch(68% .22 340);
+  --color-secondary-600: oklch(60% .22 340);
+  --color-secondary-700: oklch(52% .2 340);
+  --color-secondary-800: oklch(44% .17 340);
+  --color-secondary-900: oklch(38% .13 340);
+  --color-secondary-950: oklch(27% .09 340);
+
+  /* Neutral Colors - Neutral with OKLCH */
+  --color-neutral: oklch(55.6% 0 0);
+  --color-neutral-50: oklch(98.5% 0 0);
+  --color-neutral-100: oklch(97% 0 0);
+  --color-neutral-200: oklch(92.2% 0 0);
+  --color-neutral-300: oklch(87% 0 0);
+  --color-neutral-400: oklch(70.8% 0 0);
+  --color-neutral-500: oklch(55.6% 0 0);
+  --color-neutral-600: oklch(43.9% 0 0);
+  --color-neutral-700: oklch(37.1% 0 0);
+  --color-neutral-800: oklch(26.9% 0 0);
+  --color-neutral-900: oklch(20.5% 0 0);
+  --color-neutral-950: oklch(14.5% 0 0);
+
+  /* Gray color scale with OKLCH */
+  --color-gray-50: oklch(98.5% .002 247.839);
+  --color-gray-100: oklch(96.7% .003 264.542);
+  --color-gray-200: oklch(92.8% .006 264.531);
+  --color-gray-300: oklch(87.2% .01 258.338);
+  --color-gray-400: oklch(70.7% .022 261.325);
+  --color-gray-500: oklch(55.1% .027 264.364);
+  --color-gray-600: oklch(44.6% .03 256.802);
+  --color-gray-700: oklch(37.3% .034 259.733);
+  --color-gray-800: oklch(27.8% .033 256.848);
+  --color-gray-900: oklch(21% .034 264.665);
+  --color-gray-950: oklch(13% .028 261.692);
+
+  /* Zinc color scale with OKLCH */
+  --color-zinc-50: oklch(98.5% 0 0);
+  --color-zinc-100: oklch(96.7% .001 286.375);
+  --color-zinc-200: oklch(92% .004 286.32);
+  --color-zinc-300: oklch(87.1% .006 286.286);
+  --color-zinc-400: oklch(70.5% .015 286.067);
+  --color-zinc-500: oklch(55.2% .016 285.938);
+  --color-zinc-600: oklch(44.2% .017 285.786);
+  --color-zinc-700: oklch(37% .013 285.805);
+  --color-zinc-800: oklch(27.4% .006 286.033);
+  --color-zinc-900: oklch(21% .006 285.885);
+  --color-zinc-950: oklch(14.1% .005 285.823);
+
+  /* Indigo color scale with OKLCH (alias for primary) */
+  --color-indigo-50: oklch(96.2% .018 272.314);
+  --color-indigo-100: oklch(93% .034 272.788);
+  --color-indigo-200: oklch(87% .065 274.039);
+  --color-indigo-300: oklch(78.5% .115 274.713);
+  --color-indigo-400: oklch(67.3% .182 276.935);
+  --color-indigo-500: oklch(58.5% .233 277.117);
+  --color-indigo-600: oklch(51.1% .262 276.966);
+  --color-indigo-700: oklch(45.7% .24 277.023);
+  --color-indigo-800: oklch(39.8% .195 277.366);
+  --color-indigo-900: oklch(35.9% .144 278.697);
+  --color-indigo-950: oklch(25.7% .09 281.288);
+
+  /* White and black */
+  --color-white: #fff;
+  --color-black: #000;
+
+  /* Custom line heights */
+  --line-height-extra-loose: 2.5;
+  --line-height-12: 3rem;
+
+
+}
+
+/* Font family configuration */
+:root {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Custom prose styles for markdown content */
+.prose {
+  max-width: 65ch;
+  color: var(--color-zinc-800);
+}
+
+.prose h1 {
+  color: var(--color-zinc-900);
+  font-weight: 800;
+  font-size: 2.25rem;
+  margin-top: 0;
+  margin-bottom: 0.8888889rem;
+  line-height: 1.1111111;
+}
+
+.prose h2 {
+  color: var(--color-zinc-900);
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  line-height: 1.3333333;
+}
+
+.prose h3 {
+  color: var(--color-zinc-900);
+  font-weight: 600;
+  font-size: 1.25rem;
+  margin-top: 1.6rem;
+  margin-bottom: 0.6rem;
+  line-height: 1.6;
+}
+
+.prose h4, .prose h5, .prose h6 {
+  color: var(--color-zinc-900);
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.625;
+}
+
+.prose p {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+  line-height: 1.75;
+}
+
+.prose a {
+  color: var(--color-indigo-600);
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.prose a:hover {
+  color: var(--color-indigo-500);
+}
+
+.prose strong {
+  color: var(--color-zinc-900);
+  font-weight: 600;
+}
+
+.prose ul {
+  list-style-type: disc;
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+  padding-left: 1.625rem;
+}
+
+.prose ol {
+  list-style-type: decimal;
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+  padding-left: 1.625rem;
+}
+
+.prose li {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.prose blockquote {
+  font-weight: 500;
+  font-style: italic;
+  color: var(--color-zinc-900);
+  border-left-width: 0.25rem;
+  border-left-color: var(--color-zinc-300);
+  quotes: "\201C""\201D""\2018""\2019";
+  margin-top: 1.6rem;
+  margin-bottom: 1.6rem;
+  padding-left: 1rem;
+}
+
+.prose code {
+  color: var(--color-indigo-600);
+  font-weight: 600;
+  font-size: 0.875rem;
+  background-color: var(--color-zinc-100);
+  padding: 0.25rem 0.375rem;
+  border-radius: 0.375rem;
+}
+
+.prose pre {
+  color: var(--color-zinc-100);
+  background-color: var(--color-zinc-900);
+  overflow-x: auto;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.7142857;
+  margin-top: 1.7142857rem;
+  margin-bottom: 1.7142857rem;
+  border-radius: 0.375rem;
+  padding: 0.8571429rem 1.1428571rem;
+}
+
+.prose pre code {
+  background-color: transparent;
+  border-width: 0;
+  border-radius: 0;
+  padding: 0;
+  font-weight: inherit;
+  color: var(--color-indigo-400);
+  font-size: inherit;
+  font-family: inherit;
+  line-height: inherit;
+}
+
+.prose table {
+  width: 100%;
+  table-layout: auto;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  font-size: 0.875rem;
+  line-height: 1.7142857;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.prose thead {
+  border-bottom: 1px solid var(--color-zinc-300);
+}
+
+.prose thead th {
+  color: var(--color-zinc-900);
+  font-weight: 600;
+  vertical-align: bottom;
+  padding-right: 0.5714286rem;
+  padding-bottom: 0.5714286rem;
+  padding-left: 0.5714286rem;
+  text-align: left;
+}
+
+.prose tbody tr {
+  border-bottom: 1px solid var(--color-zinc-200);
+}
+
+.prose tbody tr:last-child {
+  border-bottom-width: 0;
+}
+
+.prose tbody td {
+  vertical-align: baseline;
+  padding: 0.5714286rem;
+}
+
+.prose tbody td p {
+  margin: 0;
+}
+
+/* Dark mode prose styles */
+.dark .prose {
+  color: var(--color-zinc-200);
+}
+
+.dark .prose h1,
+.dark .prose h2,
+.dark .prose h3,
+.dark .prose h4,
+.dark .prose h5,
+.dark .prose h6 {
+  color: var(--color-white);
+}
+
+.dark .prose strong {
+  color: var(--color-white);
+}
+
+.dark .prose a {
+  color: var(--color-indigo-400);
+}
+
+.dark .prose a:hover {
+  color: var(--color-indigo-300);
+}
+
+.dark .prose blockquote {
+  color: var(--color-zinc-100);
+  border-left-color: var(--color-zinc-700);
+}
+
+.dark .prose code {
+  color: var(--color-indigo-400);
+  background-color: var(--color-zinc-800);
+}
+
+.dark .prose pre {
+  color: var(--color-zinc-200);
+  background-color: var(--color-zinc-900);
+}
+
+.dark .prose pre code {
+  color: var(--color-indigo-300);
+}
+
+.dark .prose thead {
+  border-bottom-color: var(--color-zinc-600);
+}
+
+.dark .prose thead th {
+  color: var(--color-white);
+}
+
+.dark .prose tbody tr {
+  border-bottom-color: var(--color-zinc-700);
+}
+
+/* Dark mode placeholder text fix */
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: var(--color-gray-300);
+  opacity: 1;
+}
+
+#cta-email .dark input::placeholder,
+#cta-email .dark textarea::placeholder {
+  color: var(--color-gray-400);
+  opacity: 1;
+}
+
+/* Light mode placeholder text */
+input::placeholder,
+textarea::placeholder {
+  color: var(--color-gray-500);
+  opacity: 1;
+}
+
+/* CTA email placeholder - light mode */
+#cta-email::placeholder {
+  color: var(--color-gray-400);
+  opacity: 1;
+}
+
+/* Custom CSS end */
