@@ -21,11 +21,19 @@ The evening concludes with open networking — an opportunity to continue the di
 ## Agenda
 
 - **18:00–18:20** Event Opening
-- **18:20–19:00** Talk 1 will be announced soon
+- **18:20–19:00** Functional safety made easy with certified modules - *Bettina Keller*
 - **19:05–19:45** Bridging Open Source & Safety, Zephyr‘s journey to a Pre-Certified Kernel - *Tobias Kästner*
 - **19:50–20:30** Using Linux safely, capitalizing on complexity - *Nicholas Mc Guire*
 - **20:30–22:00** Open Networking
 
+
+## Functional safety made easy with certified modules
+
+*Bettina Keller*
+
+Bettina Keller is an Application and Support Engineer at the Munich branch office of Beckhoff Automation. Based in Verl, Beckhoff Automation is known for its PC-based control technology and automation solutions used worldwide.
+
+With extensive practical experience in industrial automation, Bettina Keller focuses on supporting mechanical engineering companies in integrating functional safety into their systems and applications. Her work helps bridge the gap between safety requirements and real-world machine implementation.
 
 ## Bridging Open Source & Safety  - Zephyr‘s journey to a Pre-Certified Kernel
 
