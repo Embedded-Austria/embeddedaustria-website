@@ -1,28 +1,35 @@
 ---
 title: "Hello, World!"
 date: 2023-12-07
-description: "The inaugural Embedded Austria event — AI testing, embedded Linux security, Flutter on embedded devices, and edge AI."
+description: "The inaugural Embedded Austria event: AI testing, embedded Linux security, Flutter on embedded devices, and edge AI."
 tags: ["ai", "embedded-linux", "security", "flutter", "edge-ai"]
 event:
   number: 1
   location: "ÖBB HQ, Am Hauptbahnhof 2, 1. Floor, 1100 Vienna"
   date: "Thursday, December 7th 2023, 18:00 to 22:00 CET"
+  start: 2023-12-07T18:00:00+01:00
+  end: 2023-12-07T22:00:00+01:00
+  venue: "ÖBB Headquarters"
+  street: "Am Hauptbahnhof 2, 1st Floor"
+  postal_code: "1100"
+  city: "Vienna"
+  country: "AT"
 ---
 
 Embedded Austria brings together innovators, thought leaders, and enthusiasts in the field of embedded systems to foster collaboration, learning, and the exchange of groundbreaking ideas. Austria has a rich tradition of embedded software excellence, and Embedded Austria aims to create a platform that showcases and advances our country's contributions to the global tech community.
 
 ## Talks
 
-- **Accelerate Embedded Software Testing with AI Tools** — *Bernhard Trinnes, Bitcrush Testing*
-- **Embedded Linux Security: The Good, the Bad and the Ugly** — *Richard Weinberger & David Gstir, sigma star GmbH*
-- **Flutter on Embedded Devices** — *Stefan Larndorfer, sequality GmbH*
-- **From Pixels to Insights: An Eye on the Edge AI** — *Dejan Đukić*
+- **Accelerate Embedded Software Testing with AI Tools** - *Bernhard Trinnes, Bitcrush Testing*
+- **Embedded Linux Security: The Good, the Bad and the Ugly** - *Richard Weinberger & David Gstir, sigma star GmbH*
+- **Flutter on Embedded Devices** - *Stefan Larndorfer, sequality GmbH*
+- **From Pixels to Insights: An Eye on the Edge AI** - *Dejan Đukić*
 
 ---
 
 ### Accelerate Embedded Software Testing with AI Tools
 
-Discover how AI-powered tools are revolutionizing embedded software testing, enabling faster, more efficient, and more accurate testing of complex embedded systems. Learn how AI can help to create unit tests, identify potential defects, and optimize test execution — eventually leading to significant improvements in software quality and reliability.
+Discover how AI-powered tools are revolutionizing embedded software testing, enabling faster, more efficient, and more accurate testing of complex embedded systems. Learn how AI can help to create unit tests, identify potential defects, and optimize test execution, eventually leading to significant improvements in software quality and reliability.
 
 **About:** Bernhard Trinnes is the founder of Bitcrush. He is a long-term embedded software developer with a strong focus on application development on embedded Linux. With Bitcrush he supports companies to test their embedded systems to help them reach their quality goals.
 
@@ -48,6 +55,6 @@ In December 2018, Google presented the Flutter framework 1.0. This framework aim
 
 ### From Pixels to Insights: An Eye on the Edge AI
 
-In the rapidly evolving landscape of artificial intelligence, the emergence of edge devices as potent platforms for AI execution stands out as a transformative development. These devices, embedded within our daily environments, possess the capability to perceive, analyze, and act — all in real time. This talk delves into the state of AI on the edge, spotlighting the latest advancements, key enablers, as well as how to get started quickly with helping your edge device to see.
+In the rapidly evolving landscape of artificial intelligence, the emergence of edge devices as potent platforms for AI execution stands out as a transformative development. These devices, embedded within our daily environments, possess the capability to perceive, analyze, and act, all in real time. This talk delves into the state of AI on the edge, spotlighting the latest advancements, key enablers, as well as how to get started quickly with helping your edge device to see.
 
 **About:** With over half a decade of experience building AI solutions, Dejan has delved into diverse domains ranging from leveraging patient imagery for improving clinical diagnostics to developing real-time video analysis tools for consumers, and presently, pioneering computer vision in additive manufacturing. At the heart of his work is the mission to endow devices with the power to see and act intelligently.

@@ -76,7 +76,8 @@
                 </div>
             </div>
             {{ else }}
-            <a class="inline-flex items-center justify-center w-auto self-center px-6 py-2 text-base font-regular text-primary-400 border-2 border-primary-400 rounded-full hover:bg-primary-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-primary-400 transition-colors" href="{{ .URL | absLangURL }}" title="{{ .Title | default .Name }}">
+            {{- $external := strings.HasPrefix .URL "http" }}
+            <a class="inline-flex items-center justify-center w-auto self-center px-6 py-2 text-base font-regular text-primary-400 border-2 border-primary-400 rounded-full hover:bg-primary-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-primary-400 transition-colors" href="{{ .URL | absLangURL }}" title="{{ .Title | default .Name }}"{{ if $external }} rel="noopener" target="_blank"{{ end }}>
               {{ .Name }}
             </a>
             {{ end }}

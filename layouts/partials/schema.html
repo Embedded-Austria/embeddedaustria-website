@@ -1,0 +1,145 @@
+{{/* ---------------------------------------------------------------------------
+     JSON-LD structured data. See SEO-TASKS.md #4.
+
+     Organization + WebSite sitewide; Event on each event page (this is what makes the
+     site eligible for Google's event rich results); BreadcrumbList on anything nested.
+     --------------------------------------------------------------------------- */}}
+
+{{- $org := .Site.Params.organization -}}
+{{- $orgId := printf "%s#organization" .Site.BaseURL -}}
+
+{{- $sameAs := slice -}}
+{{- with .Site.Params.social_media.linkedin -}}{{- if .enabled -}}{{- $sameAs = $sameAs | append .url -}}{{- end -}}{{- end -}}
+{{- with .Site.Params.social_media.github -}}{{- if .enabled -}}{{- $sameAs = $sameAs | append .url -}}{{- end -}}{{- end -}}
+{{- with .Site.Params.ticketURL -}}{{- $sameAs = $sameAs | append . -}}{{- end -}}
+
+{{- $organization := dict
+      "@type" "Organization"
+      "@id" $orgId
+      "name" ($org.name | default .Site.Title)
+      "url" .Site.BaseURL
+      "description" (.Site.Params.seo_description | default .Site.Params.description)
+      "email" $org.email
+      "logo" (dict "@type" "ImageObject" "url" ($org.logo | absURL))
+      "sameAs" $sameAs
+      "address" (dict
+        "@type" "PostalAddress"
+        "addressLocality" ($org.city | default "Vienna")
+        "addressCountry" ($org.country | default "AT"))
+-}}
+
+{{- $website := dict
+      "@type" "WebSite"
+      "@id" (printf "%s#website" .Site.BaseURL)
+      "url" .Site.BaseURL
+      "name" .Site.Title
+      "inLanguage" "en"
+      "publisher" (dict "@id" $orgId)
+-}}
+
+{{- $graph := slice $organization $website -}}
+
+{{/* ---- Event ---- */}}
+{{- if and (eq .Section "events") .IsPage -}}
+  {{- $e := .Params.event -}}
+  {{- if $e -}}
+    {{- $image := .Site.Params.og_image | absURL -}}
+    {{- with .Resources.GetMatch "featured*" -}}
+      {{- $image = (.Resize "1200x630 webp q85").Permalink -}}
+    {{- end -}}
+
+    {{- $location := dict
+          "@type" "Place"
+          "name" ($e.venue | default $e.location)
+          "address" (dict
+            "@type" "PostalAddress"
+            "streetAddress" $e.street
+            "addressLocality" ($e.city | default "Vienna")
+            "postalCode" $e.postal_code
+            "addressCountry" ($e.country | default "AT"))
+    -}}
+
+    {{- $event := dict
+          "@type" "Event"
+          "@id" (printf "%s#event" .Permalink)
+          "name" (printf "Embedded Austria No. %v: %s" $e.number .Title)
+          "url" .Permalink
+          "description" (.Description | default (.Summary | plainify | truncate 300))
+          "image" (slice $image)
+          "eventAttendanceMode" "https://schema.org/OfflineEventAttendanceMode"
+          "eventStatus" "https://schema.org/EventScheduled"
+          "inLanguage" "en"
+          "isAccessibleForFree" (not $e.price)
+          "location" $location
+          "organizer" (dict "@id" $orgId)
+          "performer" (dict "@id" $orgId)
+    -}}
+
+    {{/* startDate/endDate must be ISO-8601. event.start / event.end carry the real
+         Vienna offsets; event.date stays as human-readable display copy. */}}
+    {{- with $e.start -}}
+      {{- $event = merge $event (dict "startDate" ((time.AsTime .).Format "2006-01-02T15:04:05Z07:00")) -}}
+    {{- end -}}
+    {{- with $e.end -}}
+      {{- $event = merge $event (dict "endDate" ((time.AsTime .).Format "2006-01-02T15:04:05Z07:00")) -}}
+    {{- end -}}
+
+    {{- with .Params.ticket_url -}}
+      {{- $offer := dict
+            "@type" "Offer"
+            "url" .
+            "price" (printf "%v" ($e.price | default 0))
+            "priceCurrency" ($e.currency | default "EUR")
+            "availability" "https://schema.org/InStock"
+      -}}
+      {{- if not $e.price -}}
+        {{- $offer = merge $offer (dict "category" "free") -}}
+      {{- end -}}
+      {{- with $e.start -}}
+        {{- $offer = merge $offer (dict "validFrom" ((time.AsTime .).Format "2006-01-02T15:04:05Z07:00")) -}}
+      {{- end -}}
+      {{- $event = merge $event (dict "offers" $offer) -}}
+    {{- end -}}
+
+    {{- $graph = $graph | append $event -}}
+  {{- end -}}
+{{- end -}}
+
+{{/* ---- BreadcrumbList ---- */}}
+{{- if not .IsHome -}}
+  {{- $items := slice (dict "@type" "ListItem" "position" 1 "name" "Home" "item" .Site.BaseURL) -}}
+  {{- $pos := 1 -}}
+  {{- with .CurrentSection -}}
+    {{- if and .Title (ne .Permalink $.Site.BaseURL) -}}
+      {{- $pos = 2 -}}
+      {{- $items = $items | append (dict "@type" "ListItem" "position" 2 "name" .Title "item" .Permalink) -}}
+    {{- end -}}
+  {{- end -}}
+  {{- if .IsPage -}}
+    {{- $pos = add $pos 1 -}}
+    {{- $items = $items | append (dict "@type" "ListItem" "position" $pos "name" .Title "item" .Permalink) -}}
+  {{- end -}}
+  {{- if gt (len $items) 1 -}}
+    {{- $graph = $graph | append (dict "@type" "BreadcrumbList" "itemListElement" $items) -}}
+  {{- end -}}
+{{- end -}}
+
+{{/* ---- Events list page: ItemList of upcoming events ---- */}}
+{{- if and (eq .Section "events") .IsNode -}}
+  {{- $listItems := slice -}}
+  {{- range $i, $p := first 20 (sort (where .Site.RegularPages "Section" "events") ".Date" "desc") -}}
+    {{- $listItems = $listItems | append (dict
+          "@type" "ListItem"
+          "position" (add $i 1)
+          "url" $p.Permalink
+          "name" $p.Title) -}}
+  {{- end -}}
+  {{- if $listItems -}}
+    {{- $graph = $graph | append (dict "@type" "ItemList" "itemListElement" $listItems) -}}
+  {{- end -}}
+{{- end -}}
+
+{{/* safeJS is required: inside <script>, html/template would otherwise emit the
+     jsonify output as a quoted JS string literal rather than as an object. jsonify
+     still escapes < > & to \u003c etc., so a "</script>" in content can't break out. */}}
+<script type="application/ld+json">{{ (dict "@context" "https://schema.org" "@graph" $graph) | jsonify | safeJS }}</script>

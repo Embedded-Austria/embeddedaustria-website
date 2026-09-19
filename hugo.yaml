@@ -1,4 +1,4 @@
-baseURL: 'https://embeddedaustria.com/'
+baseURL: 'https://www.embeddedaustria.com/'
 title: Embedded Austria
 languageCode: en-US
 theme: tailbliss
@@ -13,6 +13,12 @@ darkmode_js:
   - assets/js/darkmode.js
 enableInlineShortcodes: true
 buildFuture: true
+
+# The TailBliss theme bundles demo content (lorem-ipsum posts + prose.md) under
+# themes/tailbliss/content/. Hugo merges theme content into the site, so without this
+# those placeholder pages build and get indexed. See SEO-TASKS.md #1.
+ignoreFiles:
+  - "themes/tailbliss/content/"
 
 markup:
   goldmark:
@@ -52,6 +58,22 @@ params:
   author: Bernhard Trinnes
   authorimage: ../assets/images/global/author.webp
   og_image: /images/hero.webp
+  og_image_width: 2560
+  og_image_height: 1920
+  og_image_alt: "Embedded Austria meetup in Vienna"
+
+  # SEO-only strings. Kept separate from `description`/`moto`, which are rendered as
+  # visible hero copy on the homepage. See SEO-TASKS.md #6.
+  seo_title: "Embedded Austria: Embedded Systems Meetup in Vienna"
+  seo_description: "Embedded Austria is a Vienna meetup for embedded systems engineers. Regular evenings on embedded Linux, RTOS, functional safety, security and embedded AI. Practitioners only, no vendor pitches."
+
+  # Used to build Organization JSON-LD.
+  organization:
+    name: "Embedded Austria"
+    email: "contact@embeddedaustria.com"
+    logo: "/images/site-logo.svg"
+    city: "Vienna"
+    country: "AT"
   hero:
     image: "images/hero.webp"
     alt: "Embedded Austria"
@@ -85,6 +107,8 @@ params:
       url: 'https://www.linkedin.com/company/embeddedaustria/'
 
 menu:
+  # Header stays deliberately minimal: Tickets only. Internal crawl paths come from the
+  # footer menu, the event breadcrumbs and the cross-links at the foot of each event.
   main:
     - identifier: tickets
       name: Tickets
@@ -100,6 +124,10 @@ menu:
       name: Imprint
       url: /about/
       weight: 10
+    - identifier: contact
+      name: Contact
+      url: /contact/
+      weight: 20
     - identifier: events
       name: Events
       url: /events/

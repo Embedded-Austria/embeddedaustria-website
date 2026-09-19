@@ -7,6 +7,13 @@ event:
   number: 2
   location: "Digital Society, Graben 17/10, 1010 Vienna"
   date: "Thursday, February 15th 2024, 18:00 to 22:00 CET"
+  start: 2024-02-15T18:00:00+01:00
+  end: 2024-02-15T22:00:00+01:00
+  venue: "Digital Society"
+  street: "Graben 17/10"
+  postal_code: "1010"
+  city: "Vienna"
+  country: "AT"
 ---
 
 ## event@embaut:~# echo "EMBEDDED LINUX" > /dev/topic
@@ -15,9 +22,9 @@ Join us for the Embedded Linux event, where we will explore the latest developme
 
 ## Talks
 
-- **The Yocto Project® - A Bird's Eye View** — *Robert Berger, Reliable Embedded Systems e.U.*
-- **The Embedded Linux Build Environment (ELBE)** — *Dr. Ralf Schlatterbeck, Open Source Consultant*
-- **Linux on an emulated RISC-V** — *Franz Flasch, Embedded Software Architect*
+- **The Yocto Project® - A Bird's Eye View** - *Robert Berger, Reliable Embedded Systems e.U.*
+- **The Embedded Linux Build Environment (ELBE)** - *Dr. Ralf Schlatterbeck, Open Source Consultant*
+- **Linux on an emulated RISC-V** - *Franz Flasch, Embedded Software Architect*
 
 ---
 

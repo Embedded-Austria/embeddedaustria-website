@@ -7,15 +7,22 @@ event:
   number: 3
   location: "Digital Society, Graben 17/10, 1010 Vienna"
   date: "Tuesday, October 1st 2024, 18:00 to 22:00 CET"
+  start: 2024-10-01T18:00:00+02:00
+  end: 2024-10-01T22:00:00+02:00
+  venue: "Digital Society"
+  street: "Graben 17/10"
+  postal_code: "1010"
+  city: "Vienna"
+  country: "AT"
 ---
 
 Join us for this Embedded Austria event, where we will explore the latest developments in real time operating systems (RTOS). Learn about how those operating systems are being used to power a wide range of devices, from smart watches to industrial machinery. Get practical advice from experts on how to develop and deploy RTOS applications.
 
 ## Talks
 
-- **Managing Firmware with FreeRTOS** — *Stefan Jaritz*
-- **Zephyr OS** — *Christian Hirsch*
-- **RIOT OS** — *Christian Amsüss*
+- **Managing Firmware with FreeRTOS** - *Stefan Jaritz*
+- **Zephyr OS** - *Christian Hirsch*
+- **RIOT OS** - *Christian Amsüss*
 
 ---
 

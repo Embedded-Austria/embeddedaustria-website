@@ -1,16 +1,108 @@
-<title itemprop="name">{{if .IsHome}} {{ $.Site.Params.description }} | {{ .Title }}
-    {{else}} {{ .Title }} | {{ .Site.Title }} {{end}}
-</title>
-<meta name="description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}" />
-<meta property="og:title" content="{{ .Title }} | {{ .Site.Title }}" />
-<meta name="twitter:title" content="{{ .Title }} | {{ .Site.Title }}" />
-<meta itemprop="name" content="{{ .Title }} | {{ .Site.Title }}" />
-<meta name="application-name" content="{{ .Title }} | {{ .Site.Title }}" />
-<meta property="og:description"
-      content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}" />
+{{/* ---------------------------------------------------------------------------
+     Page metadata. See SEO-TASKS.md #3 (canonical), #6 (titles), #7 (OG/Twitter).
+     --------------------------------------------------------------------------- */}}
+
+{{/* Title: brand-led on the homepage, "<page> | <site>" elsewhere. The homepage used
+     to render the site *description* as its title, with stray whitespace. */}}
+{{- $title := "" -}}
+{{- if .IsHome -}}
+  {{- $title = .Site.Params.seo_title | default .Site.Title -}}
+{{- else if .Params.seo_title -}}
+  {{- $title = .Params.seo_title -}}
+{{- else -}}
+  {{- $title = printf "%s | %s" .Title .Site.Title -}}
+{{- end -}}
+
+{{/* Description: page front matter, then a page-kind fallback, then the site default. */}}
+{{- $desc := "" -}}
+{{- if .Description -}}
+  {{- $desc = .Description -}}
+{{- else if .IsHome -}}
+  {{- $desc = .Site.Params.seo_description | default .Site.Params.description -}}
+{{- else if eq .Kind "term" -}}
+  {{- $desc = printf "Embedded Austria events and talks tagged %s." .Title -}}
+{{- else -}}
+  {{- $desc = .Site.Params.seo_description | default .Site.Params.description -}}
+{{- end -}}
+
+{{/* Social image: page featured image if present, else the site default. Always absolute —
+     og:image must be a fully qualified URL. */}}
+{{- $ogImage := "" -}}
+{{- $ogWidth := "" -}}
+{{- $ogHeight := "" -}}
+{{- $ogAlt := .Site.Params.og_image_alt | default .Site.Title -}}
+{{- with .Resources.GetMatch "featured*" -}}
+  {{- $img := .Resize "1200x630 webp q85" -}}
+  {{- $ogImage = $img.Permalink -}}
+  {{- $ogWidth = $img.Width -}}
+  {{- $ogHeight = $img.Height -}}
+  {{- $ogAlt = $.Title -}}
+{{- else -}}
+  {{- with .Params.featured_image -}}
+    {{- $ogImage = . | absURL -}}
+  {{- else -}}
+    {{- $ogImage = $.Site.Params.og_image | absURL -}}
+    {{- $ogWidth = $.Site.Params.og_image_width -}}
+    {{- $ogHeight = $.Site.Params.og_image_height -}}
+  {{- end -}}
+{{- end -}}
+
+<title itemprop="name">{{ $title }}</title>
+<meta name="description" content="{{ $desc }}" />
+
+{{/* Canonical. The site had none, which combined with the www/non-www split and Hugo's
+     /page/1/ duplicates left real duplicate-content exposure. */}}
+<link rel="canonical" href="{{ .Permalink }}" />
+
+{{/* Keep paginated pages and the empty categories index out of the index, but let
+     crawlers follow through them to the real pages. */}}
+{{- $noindex := false -}}
+{{/* Matched off the URL rather than .Paginator: .Paginator errors on regular pages and
+     would otherwise force pagination as a side effect. Covers /page/1/ too, which is a
+     straight duplicate of the list page itself. */}}
+{{- if findRE "/page/[0-9]+/$" .RelPermalink -}}{{- $noindex = true -}}{{- end -}}
+{{- if eq .Kind "taxonomy" -}}{{- if eq .Data.Plural "Categories" -}}{{- $noindex = true -}}{{- end -}}{{- end -}}
+{{- if .Params.noindex -}}{{- $noindex = true -}}{{- end -}}
+{{- if $noindex }}
+<meta name="robots" content="noindex,follow" />
+{{- else }}
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+{{- end }}
+
+<meta property="og:title" content="{{ $title }}" />
+<meta property="og:description" content="{{ $desc }}" />
 <meta property="og:site_name" content="{{ .Site.Title }}" />
 <meta property="og:url" content="{{ .Permalink }}" />
-<meta property="og:locale" content="en">
-<meta property="og:image" content="{{ if .Params.featured_image }}{{ .Params.featured_image | relURL }}{{ else }}{{ .Site.Params.og_image | relURL }}{{ end }}" />
-<meta property="og:image:secure_url" content="{{ if .Params.featured_image }}{{ .Params.featured_image | absURL }}{{ else }}{{ .Site.Params.og_image | absURL }}{{ end }}" />
-<meta property="og:type" content="{{if .IsHome}}website{{else}}article{{end}}" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="{{ if .IsHome }}website{{ else if eq .Section "events" }}article{{ else }}website{{ end }}" />
+<meta property="og:image" content="{{ $ogImage }}" />
+<meta property="og:image:secure_url" content="{{ $ogImage }}" />
+<meta property="og:image:alt" content="{{ $ogAlt }}" />
+{{- with $ogWidth }}
+<meta property="og:image:width" content="{{ . }}" />
+{{- end }}
+{{- with $ogHeight }}
+<meta property="og:image:height" content="{{ . }}" />
+{{- end }}
+{{- if eq .Section "events" }}
+<meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}" />
+{{- end }}
+
+{{/* Twitter/X and LinkedIn cards. twitter:card was missing entirely, so the existing
+     twitter:title rendered no card at all. */}}
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="{{ $title }}" />
+<meta name="twitter:description" content="{{ $desc }}" />
+<meta name="twitter:image" content="{{ $ogImage }}" />
+<meta name="twitter:image:alt" content="{{ $ogAlt }}" />
+
+<meta itemprop="name" content="{{ $title }}" />
+<meta name="application-name" content="{{ .Site.Title }}" />
+<meta name="author" content="{{ .Site.Params.author }}" />
+
+{{/* RSS autodiscovery — Hugo generates index.xml but nothing linked to it. */}}
+{{- with .OutputFormats.Get "rss" }}
+<link rel="alternate" type="application/rss+xml" href="{{ .Permalink }}" title="{{ $.Site.Title }}" />
+{{- end }}
+
+{{ partial "schema.html" . }}
