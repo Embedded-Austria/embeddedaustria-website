@@ -3,14 +3,15 @@
     <div class="overflow-hidden px-4 py-12 mx-auto max-w-md sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
         <nav class="flex flex-wrap justify-center -mx-5 -my-2" aria-label="Footer">
             {{ range site.Menus.footer }}
+            {{- $external := strings.HasPrefix .URL "http" }}
             <div class="px-5 py-2">
-                <a href="{{ .URL | absLangURL }}" class="text-base text-gray-400 hover:text-gray-300">{{ .Name }}</a>
+                <a href="{{ .URL | absLangURL }}" class="text-base text-gray-400 hover:text-gray-300"{{ if $external }} rel="noopener" target="_blank"{{ end }}>{{ .Name }}</a>
             </div>
             {{ end }}
         </nav>
         <div class="flex justify-center mt-8 space-x-6">
             {{ if .Site.Params.Social_media.Linkedin.Enabled }}
-            <a href="{{ $.Site.Params.Social_media.Linkedin.Url }}" class="text-gray-400 hover:text-gray-300">
+            <a href="{{ $.Site.Params.Social_media.Linkedin.Url }}" class="text-gray-400 hover:text-gray-300" rel="noopener" target="_blank">
                 <span class="sr-only">LinkedIn</span>
                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path fill-rule="evenodd"
@@ -20,7 +21,7 @@
             </a>
             {{ end }}
             {{ if .Site.Params.Social_media.Bluesky.Enabled }}
-            <a href="{{ $.Site.Params.Social_media.Bluesky.Url }}" class="text-gray-400 hover:text-gray-300">
+            <a href="{{ $.Site.Params.Social_media.Bluesky.Url }}" class="text-gray-400 hover:text-gray-300" rel="noopener" target="_blank">
             <span class="sr-only">Bluesky</span>
                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
                     <g transform="translate(0,2)">
@@ -32,7 +33,7 @@
             </a>
             {{ end }}
             {{ if .Site.Params.Social_media.Github.Enabled }}
-            <a href="{{ $.Site.Params.Social_media.Github.Url }}" class="text-gray-400 hover:text-gray-300">
+            <a href="{{ $.Site.Params.Social_media.Github.Url }}" class="text-gray-400 hover:text-gray-300" rel="noopener" target="_blank">
                 <span class="sr-only">GitHub</span>
                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path fill-rule="evenodd"

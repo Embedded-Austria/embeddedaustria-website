@@ -41,7 +41,11 @@ if command -v lftp >/dev/null 2>&1; then
     echo "Using lftp mirror for reliable recursive upload..."
     lftp -u "${FTP_USER}","${FTP_PASS}" "${FTP_HOST}" <<EOF
 set ftp:passive-mode true
-mirror -R --delete --verbose $LOCAL_DIR $REMOTE_DIR
+# --delete removes anything on the remote that is not in public/. Two exclusions:
+#   ^stats/   World4You's Webalizer analytics — host-generated, updated daily, and the
+#             only traffic history this site has. Deleting it would be irreversible.
+#   .DS_Store macOS metadata that has been getting published with the site.
+mirror -R --delete --verbose -x '^stats/' -X '.DS_Store' $LOCAL_DIR $REMOTE_DIR
 bye
 EOF
 else

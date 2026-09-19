@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Paginated duplicates of the list pages.
+Disallow: /*/page/
+
+Sitemap: {{ "sitemap.xml" | absURL }}

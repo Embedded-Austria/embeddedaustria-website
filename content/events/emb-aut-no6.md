@@ -7,6 +7,13 @@ event:
   number: 6
   location: "Beckhoff Automation GmbH, Leonard-Bernstein-Straße 10, 1220 Vienna"
   date: "Wednesday, March 25th 2026, 18:00 to 22:00 CET"
+  start: 2026-03-25T18:00:00+01:00
+  end: 2026-03-25T22:00:00+01:00
+  venue: "Beckhoff Automation GmbH"
+  street: "Leonard-Bernstein-Straße 10"
+  postal_code: "1220"
+  city: "Vienna"
+  country: "AT"
 ticket_url: "https://www.eventbrite.at/e/embedded-austria-no-6-functional-safety-tickets-1976838811099"
 ---
 
@@ -16,7 +23,7 @@ Three speakers with strong roots in major open source projects share hands-on ex
 
 Expect concrete insights, honest lessons learned, and discussion beyond marketing slides.
 
-The evening concludes with open networking — an opportunity to continue the discussion and connect with others from the embedded community.
+The evening concludes with open networking, an opportunity to continue the discussion and connect with others from the embedded community.
 
 ## Agenda
 

@@ -1,12 +1,19 @@
 ---
 title: "Security Regulations, Norms and Tooling"
 date: 2025-10-14
-description: "How the Cyber Resilience Act and NIS2 are shaping embedded software — compliance, standards, and threat modelling."
+description: "How the Cyber Resilience Act and NIS2 are shaping embedded software: compliance, standards, and threat modelling."
 tags: ["security", "cra", "nis2", "iec-62443"]
 event:
   number: 5
   location: "TTTech Auto AG, Operngasse 17, 1040 Vienna, 5th Floor, Room Townhall"
   date: "Tuesday, October 14th 2025, 18:00 to 22:00 CET"
+  start: 2025-10-14T18:00:00+02:00
+  end: 2025-10-14T22:00:00+02:00
+  venue: "TTTech Auto AG"
+  street: "Operngasse 17, 5th floor, Room Townhall"
+  postal_code: "1040"
+  city: "Vienna"
+  country: "AT"
 ticket_url: "https://www.eventbrite.at/e/embedded-austria-no-5-security-regulations-norms-and-tooling-tickets-1649259271879"
 ---
 
@@ -15,9 +22,9 @@ As embedded systems become increasingly connected, developers face growing press
 ## Agenda
 
 - **18:00–18:20** Event Opening
-- **18:20–19:00** "Compliance by Design": how EU Legislation enforces Embedded Device Security — *Gerald Sendera*
-- **19:05–19:45** Standards for implementing new compliance requirements from CRA/NIS2/etc. — *Thomas Bleier*
-- **19:50–20:30** Tools and Methods for Threat Modelling with CRA/IEC 62443-4-1/2 in mind — *Martin Aman*
+- **18:20–19:00** "Compliance by Design": how EU Legislation enforces Embedded Device Security - *Gerald Sendera*
+- **19:05–19:45** Standards for implementing new compliance requirements from CRA/NIS2/etc. - *Thomas Bleier*
+- **19:50–20:30** Tools and Methods for Threat Modelling with CRA/IEC 62443-4-1/2 in mind - *Martin Aman*
 - **20:30–22:00** Open Networking
 
 ---
