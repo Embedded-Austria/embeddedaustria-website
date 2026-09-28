@@ -30,7 +30,7 @@ The evening concludes with open networking, an opportunity to continue the discu
 - **18:00–18:20** Event Opening
 - **18:20–19:00** AI-as-a-Service in Space for Real-Time Earth Observation Intelligence - *Thomas Pusztai*
 - **19:05–19:45** Title to be announced - *Rudolf Mayer, SBA Research*
-- **19:50–20:30** Title to be announced - *Alexander Zehetmaier, Xinity KI*
+- **19:50–20:30** LLM Inference Is a Memory Problem - *Jonas Vander, Xinity*
 - **20:30–22:00** Open Networking
 
 
@@ -39,3 +39,13 @@ The evening concludes with open networking, an opportunity to continue the discu
 *by Thomas Pusztai*
 
 Thomas Pusztai obtained his PhD in computer science at the Distributed Systems Group of TU Wien. His research focuses on the Edge-Cloud-Space computing continuum. As co-founder and CEO of LeoTrek AI GmbH he is working on a software platform for distributed AI-as-a-Service in space to deliver intelligence for time-critical use cases.
+
+## LLM Inference Is a Memory Problem
+
+*by Jonas Vander*
+
+*Fixed slots, paged pools and cache side channels, from edge devices to servers*
+
+Same language model, same GPU, and yet one inference engine delivers 19 times the throughput of another. The reason is not compute power, but memory management. From an embedded perspective, this talk shows why the KV cache determines how many users and how much context a machine can handle, why fixed slots and aggressive quantisation as in llama.cpp are a good fit for a single device, and why a shared prompt cache can leak information through timing.
+
+Jonas Vander is co-founder and CTO of Xinity, a Vienna-based sovereign AI infrastructure startup, and has spent a decade in AI engineering since studying at Radboud University. He is the architect behind the Xinity Runtime, the open-source platform that lets organisations run AI models on their own servers.
