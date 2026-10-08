@@ -29,7 +29,7 @@ The evening concludes with open networking, an opportunity to continue the discu
 
 - **18:00–18:20** Event Opening
 - **18:20–19:00** AI-as-a-Service in Space for Real-Time Earth Observation Intelligence - *Thomas Pusztai*
-- **19:05–19:45** Title to be announced - *Rudolf Mayer, SBA Research*
+- **19:05–19:45** Embedded AI Basics - *Rudolf Mayer, SBA Research*
 - **19:50–20:30** LLM Inference Is a Memory Problem - *Jonas Vander, Xinity*
 - **20:30–22:00** Open Networking
 
@@ -39,6 +39,14 @@ The evening concludes with open networking, an opportunity to continue the discu
 *by Thomas Pusztai*
 
 Thomas Pusztai obtained his PhD in computer science at the Distributed Systems Group of TU Wien. His research focuses on the Edge-Cloud-Space computing continuum. As co-founder and CEO of LeoTrek AI GmbH he is working on a software platform for distributed AI-as-a-Service in space to deliver intelligence for time-critical use cases.
+
+## Embedded AI Basics
+
+*by Rudolf Mayer*
+
+Rudolf Mayer is senior researcher at SBA Research and leads the Machine Learning and Data Management Research Group. He is a lecturer at TU Wien as well as University of Applied Sciences Technikum Wien.
+
+At SBA Research, his research focus lies on machine learning, specifically including privacy-preserving learning and security of machine learning, and data management, among others in the currently ongoing research projects FeatureCloud (EU H2020), focusing on privacy-preserving federated learning, and projects funded by the Austrian Research Promotion Agency (FFG): WellFort, KnoP-2D, PRIMAL, and Gastric.
 
 ## LLM Inference Is a Memory Problem
 
