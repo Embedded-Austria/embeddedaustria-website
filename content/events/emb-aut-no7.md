@@ -29,7 +29,7 @@ The evening concludes with open networking, an opportunity to continue the discu
 
 - **18:00–18:20** Event Opening
 - **18:20–19:00** AI-as-a-Service in Space for Real-Time Earth Observation Intelligence - *Thomas Pusztai*
-- **19:05–19:45** Embedded AI Basics - *Rudolf Mayer, SBA Research*
+- **19:05–19:45** Edge Learning: Privacy by Design or New Attack Surface - *Rudolf Mayer, SBA Research*
 - **19:50–20:30** LLM Inference Is a Memory Problem - *Jonas Vander, Xinity*
 - **20:30–22:00** Open Networking
 
@@ -40,13 +40,19 @@ The evening concludes with open networking, an opportunity to continue the discu
 
 Thomas Pusztai obtained his PhD in computer science at the Distributed Systems Group of TU Wien. His research focuses on the Edge-Cloud-Space computing continuum. As co-founder and CEO of LeoTrek AI GmbH he is working on a software platform for distributed AI-as-a-Service in space to deliver intelligence for time-critical use cases.
 
-## Embedded AI Basics
+## Edge Learning: Privacy by Design or New Attack Surface
 
 *by Rudolf Mayer*
 
-Rudolf Mayer is senior researcher at SBA Research and leads the Machine Learning and Data Management Research Group. He is a lecturer at TU Wien as well as University of Applied Sciences Technikum Wien.
+Most connotations of embedded AI today might consider the inference stage - the model is trained on a server and deployed to the device. Yet the data that could improve it is generated on the device, and often can’t leave it because of bandwidth, patchy connectivity or data protection. Enter Federated Edge learning: it trains on the device instead. Devices learn locally, and federated learning combines their updates without ever collecting the raw data centrally, which is why it is often described as privacy by design.
 
-At SBA Research, his research focus lies on machine learning, specifically including privacy-preserving learning and security of machine learning, and data management, among others in the currently ongoing research projects FeatureCloud (EU H2020), focusing on privacy-preserving federated learning, and projects funded by the Austrian Research Promotion Agency (FFG): WellFort, KnoP-2D, PRIMAL, and Gastric.
+The talk starts with examples where this is worth the effort, explains how federated learning works, and then covers what is different on embedded hardware: training needs far more memory and energy than inference, devices drop out in the middle of a round, and the data on one device can look very different from the data on the next, i.e, we might have highly heterogeneous and imbalanced data.
+
+Finally, federated edge learning is not without caveat. Sending updates instead of raw data reduces exposure, but an update can still reveal information about the data it was computed from. And because the server never sees the data behind an update, a few compromised devices can send manipulated updates that poison the model or add a backdoor.
+
+Rudolf Mayer is a senior researcher at SBA Research, and leads the Machine Learning and Data Management team. He is also teaching at TU Wien.
+
+He has been working in machine learning for 20 years, and tackles privacy and security in ML for the last 10 years, with a focus on federated learning, integrity and confidentiality attacks on ML, and IP Protection of ML assets like datasets and models.
 
 ## LLM Inference Is a Memory Problem
 
